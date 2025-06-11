@@ -51,48 +51,25 @@
     </nav>
     <div id="Events" class="container-fluid card-list mx-2 my-4">
       <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="col d-flex-md justify-content-center">
-          <div class="card" style="width: 18rem">
+        <div class="col d-flex justify-content-center">
+          <div class="card" style="width: 18rem;">
             <img src="./Screen1.png" class="card-img-top" alt="..." />
             <div class="card-body">
               <h5 class="card-title">Joust w/Proxxxy</h5>
-              <h6 class="card-text">
-                Friday 6/13
-              </h6>
+              <h6 class="card-text">Friday 6/13</h6>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><a href="">@joustdub</a></li>
-              <li class="list-group-item"><a href="">@proxxydub</a></li>
-              <li class="list-group-item"><a href="">@chiyoko_dubz</a></li>
+              <li class="list-group-item"><a href="https://www.instagram.com/joustdub">@joustdub</a></li>
+              <li class="list-group-item"><a href="https://www.instagram.com/proxxydub">@proxxydub</a></li>
+              <li class="list-group-item"><a href="https://www.instagram.com/chiyoko_dubz">@chiyoko_dubz</a></li>
             </ul>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <!-- <a href="#" class="btn btn-primary">RSVP</a> -->
-              <a href="https://posh.vip/e/joust-wproxxxy" class="btn btn-primary flex-row">Tickets</a>
-            </div>
-          </div>
-        </div>
-        <div class="col d-flex-md justify-content-center">
-          <div class="card" style="width: 18rem">
-            <img src="./Screen2.png" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h6 class="card-title">Wednesday Event</h6>
-              <p class="card-text">
-                Wednesday 6/4
-              </p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><a href="">@rabbithexx</a></li>
-              <li class="list-group-item"><a href="">@psyrelix_rtr</a></li>
-              <li class="list-group-item"><a href="">@itzzchrxss B2B @idobendvd</a></li>
-            </ul>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">RSVP</a>
-              <a href="#" class="btn btn-primary">Tickets</a>
+            <div class="card-footer d-flex justify-content-end">
+              <a href="https://posh.vip/e/joust-wproxxxy" class="btn btn-primary">Tickets</a>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
@@ -128,14 +105,35 @@
                 <div id="Subscribe" class="col-lg-4 col-md-6">
                     <h3 class="footer-title">Subscribe</h3>
                     <p class= mb-4">Subscribe to our newsletter for updates, news, and exclusive offers.</p>
-                    <form class="mb-4">
-                        <div class="input-group">
-                            <input type="email" class="form-control newsletter-input" placeholder="Enter your email">
-                            <button class="btn btn-subscribe text-white" type="submit">Subscribe</button>
-                        </div>
+                    <form class="mb-4" action="https://script.google.com/macros/s/AKfycbxt8Qw1bFxvGXqjdw5GZq-wQMaiJ5DDknGjphSYjd3t4ByMZZTLnDP2DoJ2S0Zmg2z9kQ/exec" method="POST" onsubmit="return subscribe(event)">
+                      <div class="input-group">
+                          <input type="email" name="email" class="form-control newsletter-input" placeholder="Enter your email" required>
+                          <button class="btn btn-subscribe text-white" type="submit">Subscribe</button>
+                      </div>
                     </form>
                     <p class="small">By subscribing, you agree to our Privacy Policy and consent to receive updates.</p>
                 </div>
+                <!-- E-mail Subscribe -->
+                <script>
+                  function subscribe(event) {
+                    event.preventDefault();
+                    const form = event.target;
+                    const email = form.querySelector('[name="email"]').value;
+                
+                    fetch(form.action, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                      body: `email=${encodeURIComponent(email)}`
+                    })
+                    .then(response => response.text())
+                    .then(result => alert('Subscribed successfully!'))
+                    .catch(error => alert('Error. Please try again.'));
+                    
+                    form.reset();
+                    return false;
+                  }
+                </script>
+
             </div>
         </div>
 
